@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="animate.css">
+    <script type="text/javascript" src="http://kidlife.profitcode.by/fordwn/shake.js"></script>
+
+    <title>shake me</title>
+</head>
+<body>
+
+<div id="wrap" class="wrapper">
+    <div class="main_page ">
+        <div class="text__wrapper">
+            Много планов на сегодня?
+        </div>
+        <div class="shake__icon__wrapper animated fadeIn">
+            <img class="animated shake delay-2s infinite" src="hand__icon.png" alt="shake icon">
+        </div>
+       <div class="images_wrapper animated bounceInUp delay-1s">
+           <img src="fulstack.png" alt="">
+       </div>
+    </div>
+    <div class="shaked_page ">
+        <div class="shaked__wrapper">
+            <div class="logo">
+                <img src="slogan.png" alt="">
+            </div>
+            <div class="product">
+                <img src="product_33_lightnings.png" alt="">
+            </div>
+        </div>
+
+    </div>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        document.querySelector('.shake__icon__wrapper').addEventListener('click', shakeEventDidOccur, false);
+        initHeight();
+        console.log ('we are ready 2 shake');
+        //create a new instance of shake.js.
+        var myShakeEvent = new Shake({
+            threshold: 15
+        });
+
+        // start listening to device motion
+        myShakeEvent.start();
+        console.log(myShakeEvent);
+        // register a shake event
+        window.addEventListener('shake', shakeEventDidOccur, false);
+
+        //shake event callback
+        function shakeEventDidOccur () {
+            console.log('we did it');
+            //put your own code here etc.
+            document.querySelector('.shaked_page').classList.add('active');
+            document.querySelector('.main_page').classList.add('non_active');
+            document.querySelector('.logo').classList.add('animated', 'fadeIn');
+            document.querySelector('.product').classList.add('animated', 'fadeInLeft', 'delay-1s');
+        }
+        function initHeight(){
+            let docHeight = $(document).height();
+            console.log(docHeight);
+            if (docHeight < 500) {
+                console.log('yes it is');
+                $('#wrap').width(docHeight * 0.64);
+            } else {
+                console.log ('no it is NOT');
+                $('#wrap').width('auto');
+            }
+        }
+    };
+</script>
+</body>
+</html>
